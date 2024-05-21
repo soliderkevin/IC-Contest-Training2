@@ -1,0 +1,62 @@
+
+//chat gpt given
+module MemoryMappedIO (
+    input wire clk,
+    input wire reset_n,
+    input wire [7:0] address,
+    input wire [7:0] data_in,
+    input wire write_enable,
+    output wire [7:0] data_out
+);
+
+reg [7:0] control_register;
+reg [7:0] status_register;
+
+always @(posedge clk or negedge reset_n) begin
+    if (!reset_n) begin
+        control_register <= 8'b0;
+        status_register <= 8'b0;
+    end else begin
+        if (write_enable) begin
+            case(address)
+                8'h00: control_register <= data_in; // Write to control register
+                8'h04: status_register <= data_in; // Write to status register
+            endcase
+        end else begin
+            case(address)
+                8'h00: data_out <= control_register; // Read from control register
+                8'h04: data_out <= status_register; // Read from status register
+            endcase
+        end
+    end
+end
+
+endmodule
+
+//chat gpt given
+module Memory (
+    input wire clk,
+    input wire reset_n,
+    input wire [7:0] address,
+    input wire [7:0] data_in,
+    input wire write_enable,
+    output wire [7:0] data_out
+);
+
+reg [7:0] mem [255:0]; // 256-byte memory
+
+always @(posedge clk or negedge reset_n) begin
+    if (!reset_n) begin
+        // Reset memory to all zeros , Verilog isn't allowing the for loop.
+        for (int i = 0; i < 256; i = i + 1)
+            mem[i] <= 8'b0;
+    end else begin
+        if (write_enable)
+            mem[address] <= data_in; // Write to memory
+        else
+            data_out <= mem[address]; // Read from memory
+    end
+end
+
+endmodule
+

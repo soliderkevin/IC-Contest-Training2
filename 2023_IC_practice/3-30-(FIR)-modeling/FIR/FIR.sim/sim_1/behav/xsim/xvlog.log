@@ -1,0 +1,6 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/kevin/2023_IC_practice/3-30-testing/FIR.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module FIR
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/kevin/2023_IC_practice/3-30-testing/PATTERN.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module PATTERN
+INFO: [VRFC 10-2263] Analyzing Verilog file "C:/Users/kevin/2023_IC_practice/3-30-testing/TESTBED.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module TESTBED
